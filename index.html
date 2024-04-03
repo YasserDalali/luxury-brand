@@ -4,8 +4,67 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Document</title>
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css">
+    <script src="https://cdn.jsdelivr.net/npm/gsap@3.12.5/dist/gsap.min.js"></script>
+
+    <script src="https://cdn.jsdelivr.net/npm/gsap@3.12.5/dist/ScrollTrigger.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/gsap@3.12.5/dist/ScrollToPlugin.min.js"></script>
+<style>
+    body {
+  background: black;
+  color: white;
+}
+
+section {
+  position: relative;
+  height: 100vh;
+  font-size: 50px;
+  text-align: center;
+  line-height: 100vh;
+}
+
+.img-mask {
+  position: absolute;
+  height: 100%;
+  width: 100%;
+  overflow: hidden;
+  display: flex;
+  justify-content: center;
+}
+.img-mask img {
+  height: 100vh;
+}
+
+
+</style>
+
+<!-- ------------------------------------------------------ -->
 </head>
 <body>
-    
+    <section class="revealer">
+        <div class="img-mask"><img src="https://unsplash.it/800/450?image=766" /></div>
+        <div class="img-mask"><img src="https://unsplash.it/800/450?image=1080" /></div>
+      </section>
+
+
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.7.1/gsap.min.js"></script>
+
+    <script>
+gsap.registerPlugin(ScrollTrigger);
+
+let masks = gsap.utils.toArray(".img-mask");
+
+gsap.to(masks[1], {
+  width: "0%",
+  ease: "none",
+  scrollTrigger: {
+    trigger: ".revealer",
+    start: "top top",
+    pin: true,
+    end: "+=100%",
+    scrub: 0.5
+  }
+});
+    </script>
 </body>
 </html>
